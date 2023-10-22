@@ -14,13 +14,16 @@ const App = () => {
       email: email,
     };
     try {
-      const response = await fetch('http://localhost:8888/api/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        'https://main--steady-rabanadas-a31537.netlify.app/api/signup',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
         },
-        body: JSON.stringify(data),
-      });
+      );
       if (response.ok) {
         const responseData = await response.json(); // Parse the response body as JSON
         setHello(responseData.username);
@@ -40,13 +43,16 @@ const App = () => {
       password: pw,
     };
     try {
-      const response = await fetch('http://localhost:8888/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        'https://main--steady-rabanadas-a31537.netlify.app/api/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
         },
-        body: JSON.stringify(data),
-      });
+      );
       if (response.ok) {
         const responseData = await response.json(); // Parse the response body as JSON
         setHello(responseData.username);
