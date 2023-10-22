@@ -8,5 +8,6 @@
   to = "/.netlify/functions/api/:splat"
 [build]
   functions = "src/functions"
-  command = "pnpm run build"
+  external_node_modules = ["@prisma/client"]
+  command = "npm run build"
   publish = "build"
