@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build",
+    "build": "npx prisma generate && tsc && vite build",
     "preview": "vite preview",
     "dev": "netlify dev"
   },
