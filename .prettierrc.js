@@ -1,0 +1,16 @@
+module.exports = {
+  trailingComma: 'all',
+  tabWidth: 2,
+  printWidth: 80,
+  useTabs: false,
+  singleQuote: true,
+  endOfLine: 'auto',
+  quoteProps: 'as-needed',
+  bracketSpacing: true,
+  arrowParens: 'always',
+  jsxBracketSameLine: false,
+  tailwindConfig: './tailwind.config.js',
+  tailwindAttributes: ['wrapperClassName', 'wrapClassName', 'rootClassName'],
+  tailwindFunctions: ['classNames', 'classnames', 'twMerge'],
+  plugins: ['prettier-plugin-tailwindcss'],
+}
