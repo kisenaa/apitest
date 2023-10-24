@@ -1,7 +1,7 @@
 {
   "name": "fullstack",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "start": "vite",
     "build": "npx prisma generate && tsc && vite build",

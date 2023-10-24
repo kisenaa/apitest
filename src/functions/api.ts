@@ -28,7 +28,7 @@ app.use(cors());
 app.use(express.json());
 
 router.get('/msg', async (req, res) => {
-  res.json({ msg: 'Hello Word from 3000' });
+  res.json({ msg: 'Hello Words from 3000' });
 });
 
 router.post('/signup', async (req, res) => {
