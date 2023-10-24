@@ -11,6 +11,9 @@ dependencies:
   '@prisma/client':
     specifier: 5.4.2
     version: 5.4.2(prisma@5.4.2)
+  '@prisma/engines-version':
+    specifier: 5.5.0-19.475c616176945d72f4330c92801f0c5e6398dc0f
+    version: 5.5.0-19.475c616176945d72f4330c92801f0c5e6398dc0f
   esbuild:
     specifier: ^0.19.5
     version: 0.19.5
@@ -703,6 +706,10 @@ packages:
 
   /@prisma/engines-version@5.4.1-2.ac9d7041ed77bcc8a8dbd2ab6616b39013829574:
     resolution: {integrity: sha512-wvupDL4AA1vf4TQNANg7kR7y98ITqPsk6aacfBxZKtrJKRIsWjURHkZCGcQliHdqCiW/hGreO6d6ZuSv9MhdAA==}
+    dev: false
+
+  /@prisma/engines-version@5.5.0-19.475c616176945d72f4330c92801f0c5e6398dc0f:
+    resolution: {integrity: sha512-/1orOUq7I54ISYBJockYB15FmF/VkCBeFzYYkWyLtBl2tLlJWHmA3NEUBM+wSmXGLK78BmuSNHrLbf8bmXkukQ==}
     dev: false
 
   /@prisma/engines@5.4.2:
