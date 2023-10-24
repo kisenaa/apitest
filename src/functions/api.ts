@@ -18,11 +18,6 @@ const pool = new Pool({ connectionString: url });
 const adapter = new PrismaNeon(pool);
 const prisma = new PrismaClient({
   adapter,
-  datasources: {
-    db: {
-      url: url,
-    },
-  },
 });
 // Init router
 const router = Router();
