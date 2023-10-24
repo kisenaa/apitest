@@ -1,21 +1,23 @@
-import { neonConfig } from '@neondatabase/serverless';
+import { Pool, neonConfig } from '@neondatabase/serverless';
 import { PrismaClient } from '@prisma/client';
+import { PrismaNeon } from '@prisma/adapter-neon';
 import dotenv from 'dotenv';
 import express, { Router } from 'express';
 import cors from 'cors';
 
 import serverless from 'serverless-http';
-
+import ws from 'ws';
 // Init database connection
 dotenv.config();
 neonConfig.fetchConnectionCache = true;
-//neonConfig.webSocketConstructor = ws;
+neonConfig.webSocketConstructor = ws;
 const url = `${process.env.DATABASE_URL}`;
 
 // Init prisma client
-//const pool = new Pool({ connectionString });
-//const adapter = new PrismaNeon(pool);
+const pool = new Pool({ connectionString: url });
+const adapter = new PrismaNeon(pool);
 const prisma = new PrismaClient({
+  adapter,
   datasources: {
     db: {
       url: url,
