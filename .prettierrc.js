@@ -13,4 +13,4 @@ module.exports = {
   tailwindAttributes: ['wrapperClassName', 'wrapClassName', 'rootClassName'],
   tailwindFunctions: ['classNames', 'classnames', 'twMerge'],
   plugins: ['prettier-plugin-tailwindcss'],
-}
+};

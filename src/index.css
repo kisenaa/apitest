@@ -1,3 +1,89 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.035em;
+    height: 100%;
+  }
+
+  @font-face {
+    font-family: Inter;
+    src: url('./assets/fonts/Inter.ttf') format('truetype');
+    font-display: swap;
+  }
+}
+
+.cl-internal-b3fm6y {
+  visibility: hidden;
+}
+
+.landing-gradient-text {
+  background-image: -webkit-linear-gradient(
+    125deg,
+    #ff1e64,
+    #f48a39,
+    #8c25e5,
+    #106cbd
+  );
+  background-clip: text;
+  color: transparent;
+  animation: hue 60s infinite linear;
+  -webkit-background-clip: text;
+  -webkit-color: transparent;
+  -webkit-animation: hue 60s infinite linear;
+}
+
+@keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+}
+
+:root {
+  font-family: Inter, sans-serif;
+  box-sizing: border-box;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --bg-color: #1f242d;
+  --second-bg-color: #323946;
+  --third-bg-color: #17181f;
+  --text-color: #ffffff;
+  --main-color: #0ef;
+  --primary-8: #06f;
+}
+
+.blue-button {
+  height: 48px;
+  min-width: 120px;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 1.4em;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 130%;
+  transition: box-shadow 0.2s;
+  display: flex;
+  box-shadow: inset 0 0 20px 20px transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
