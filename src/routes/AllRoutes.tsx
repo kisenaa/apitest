@@ -7,7 +7,7 @@ import SignUps from '@/components/SignUp';
 import Dashboard from '@/pages/dashboard/Dashboard';
 import HomePage from '@/pages/HomePage';
 
-const clerkPubKey = `${await import.meta.env
+const clerkPubKey = `${import.meta.env
   .VITE_REACT_APP_CLERK_PUBLISHABLE_KEY}`;
 
   const AllRoutes = () => {
