@@ -11,7 +11,7 @@ const SignUps = ({ children }: { children?: ReactNode }) => {
         }}
       ></div>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <SignUp routing="path" path="/sign-up" />
+        <SignUp routing="path" path="/sign-up" afterSignUpUrl="/dashboard"/>
         {children}
       </div>
     </div>
