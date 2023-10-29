@@ -45,7 +45,7 @@ export const handler: Handler = async (event) => {
     console.log(email_addresses)
     console.log(first_name)
     console.log(last_name)
-    console.log(((created_at as unknown) as Date).toUTCString())
+    console.log(new Date(created_at).toUTCString())
   }
 
   return {
