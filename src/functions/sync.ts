@@ -61,7 +61,7 @@ export const handler: Handler = async (event) => {
         email: email_addresses[0].email_address,
         firstname: first_name,
         lastname: last_name,
-        createdAt: new Date(created_at).toUTCString()
+        createdAt: new Date(created_at).toISOString()
       },
       update: {
         email: email_addresses[0].email_address,
