@@ -5,13 +5,27 @@ import { RxAvatar } from 'react-icons/rx';
 import { useNavigate } from 'react-router-dom';
 
 import Sidebar, { SidebarItem } from '@/components/Sidebar';
+import { useEffect, useState } from 'react';
 
-const Navbar = () => {
+const SideBar = ({currentPage, setCurrentPage}: { currentPage:string ,setCurrentPage: React.Dispatch<React.SetStateAction<string>> }) => {
   const navigate = useNavigate();
 
   const { user } = useUser();
   const { openUserProfile } = useClerk();
   const { signOut } = useClerk();
+
+  const [dashboardOpen, setDashboardOpen] = useState(true);
+  const [weatherOpen, setWeatherOpen] = useState(false);
+
+  useEffect(() => {
+    if (currentPage === 'Dashboard') {
+      setDashboardOpen(true);
+      setWeatherOpen(false);
+    } else {
+      setDashboardOpen(false);
+      setWeatherOpen(true);
+    }
+  }, [currentPage])
 
   return (
     <>
@@ -33,20 +47,20 @@ const Navbar = () => {
           />
         </button>
         <hr className="my-2"></hr>
-        <button>
+        <button onClick={() => setCurrentPage('Dashboard')}>
           <SidebarItem
             icon={<LayoutDashboard size={30} />}
             text="Dashboard"
-            active={true}
+            active={dashboardOpen}
             alert={false}
           />
         </button>
         <hr className="my-2"></hr>
-        <button>
+        <button onClick={() => setCurrentPage('Weather')}>
           <SidebarItem
             icon={<CloudSunRain size={30} />}
             text="Weathers"
-            active={false}
+            active={weatherOpen}
             alert={false}
           />
         </button>
@@ -64,4 +78,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default SideBar;
