@@ -29,4 +29,5 @@ model Todolist {
   postId        String    @id       @db.Char(13)
   user          Userdata  @relation(fields: [postUsername], references: [username])
   postUsername  String              @db.VarChar(30)
+  status        Boolean             @db.Boolean
 }
