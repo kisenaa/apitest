@@ -12,7 +12,7 @@ const webhookSecret = `${process.env.WEBHOOK_SECRET}`;
 export const handler: Handler = async (event) => {
   const payload = event.body!
   console.log(payload)
-  const headers = event.multiValueHeaders as IncomingHttpHeaders & WebhookRequiredHeaders
+  const headers = event.headers as IncomingHttpHeaders & WebhookRequiredHeaders
 
   const heads = {
     "svix-id": headers['svix-id'],
