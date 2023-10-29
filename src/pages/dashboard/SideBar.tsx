@@ -27,6 +27,7 @@ const SideBar = ({currentPage, setCurrentPage}: { currentPage:string ,setCurrent
     }
   }, [currentPage])
 
+
   return (
     <>
       <Sidebar

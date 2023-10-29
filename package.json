@@ -11,6 +11,7 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^4.12.18",
     "@netlify/functions": "^2.3.0",
     "@prisma/client": "5.4.2",
     "@types/react-router-dom": "^5.3.3",
@@ -24,6 +25,7 @@
     "react-router-dom": "^6.17.0",
     "seedrandom": "^3.0.5",
     "serverless-http": "^3.2.0",
+    "svix": "^1.13.0",
     "sweetalert2": "^11.7.32",
     "ws": "8.14.2"
   },
