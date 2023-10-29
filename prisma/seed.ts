@@ -14,11 +14,17 @@ const pool = new Pool({ connectionString });
 const adapter = new PrismaNeon(pool);
 const prisma = new PrismaClient({ adapter });
 
-const userData: Prisma.userdataCreateInput[] = [
+const timestamp = 1698123482078;
+const createdAt = new Date(timestamp).toISOString()
+console.log(createdAt)
+
+const userData: Prisma.UserdataCreateInput[] = [
   {
-    username: 'serverless6',
-    email: '6@less.com',
-    password: '123456',
+    username: "defaultio",
+    email: "defau40@gmail.com",
+    firstname: "Polandadadad",
+    lastname: "Siudadas",
+    createdAt: createdAt,
   },
 ];
 
