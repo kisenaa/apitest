@@ -31,8 +31,8 @@ router.get('/msg', async (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-  const { username, email, password } = req.body;
-  if (!username || !email || !password) {
+  const { username, email } = req.body;
+  if (!username || !email) {
     res.status(401).json({ msg: 'Not enough argument were given !' });
     return;
   }
@@ -41,7 +41,6 @@ router.post('/signup', async (req, res) => {
     data: {
       username,
       email,
-      password,
     },
   });
   res.json(result);
@@ -57,7 +56,7 @@ router.post('/login', async (req, res) => {
       },
     });
 
-    if (!result || result.password !== password) {
+    if (!result || result.email !== email) {
       res.status(401).json({ msg: 'Wrong Cridentials' });
     } else {
       res.json({ msg: 'Success', username: username });
@@ -72,7 +71,7 @@ router.post('/login', async (req, res) => {
       },
     });
 
-    if (!result || result.password !== password) {
+    if (!result || result.email !== email) {
       res.status(401).json({ msg: 'Wrong Cridentials' });
     } else {
       res.json({ msg: 'Success', username: username });
