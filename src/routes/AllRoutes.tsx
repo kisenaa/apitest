@@ -24,9 +24,6 @@ const AllRoutes = () => {
         <Route path="/sign-in/*" element={<SignIns />} />
         <Route path="/sign-up/*" element={<SignUps />} />
         <Route path="/home/*" element={<HomePage />} />
-        <Route path='/.netlify/*'/>
-        <Route path='/api/*'/>
-        <Route path='/sync/'/>
         <Route
           path="/dashboard/*"
           element={

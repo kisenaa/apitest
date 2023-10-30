@@ -82,6 +82,6 @@ router.post('/login', async (req, res) => {
   res.json({ msg: 'Not enough argument were given !' });
 });
 
-app.use('/api/', router);
+app.use('/.api/', router);
 
 export const handler = serverless(app);
