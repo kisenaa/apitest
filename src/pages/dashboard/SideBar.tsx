@@ -1,11 +1,11 @@
 import { useClerk, useUser } from '@clerk/clerk-react';
 import { CloudSunRain, LayoutDashboard } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { HiOutlineLogout } from 'react-icons/hi';
 import { RxAvatar } from 'react-icons/rx';
 import { useNavigate } from 'react-router-dom';
 
 import Sidebar, { SidebarItem } from '@/components/Sidebar';
-import { useEffect, useState } from 'react';
 
 const SideBar = ({currentPage, setCurrentPage}: { currentPage:string ,setCurrentPage: React.Dispatch<React.SetStateAction<string>> }) => {
   const navigate = useNavigate();

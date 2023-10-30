@@ -53,7 +53,7 @@ export const handler: Handler = async (event) => {
   if (evt.type === 'user.created' || evt.type === 'user.updated') {
     const {username, email_addresses, first_name, last_name, created_at} = evt.data
     
-    
+    console.time('query')
     await prisma.userdata.upsert({
       where: {username: username as string},
       create: {
@@ -69,6 +69,7 @@ export const handler: Handler = async (event) => {
         lastname: last_name,
       }
     })
+    console.timeEnd('query')
   }
 
   return {

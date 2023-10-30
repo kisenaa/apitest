@@ -15,19 +15,19 @@ datasource db {
   // shadowDatabaseUrl = env(“SHADOW_DATABASE_URL”)
 }
 
-model Userdata {
+model userdata {
   username   String   @id       @db.VarChar(30)
   email      String   @unique   @db.VarChar(30)
   firstname  String?            @db.VarChar(30)
   lastname   String?            @db.VarChar(30)
   telephone  String?            @db.VarChar(20)
   createdAt  DateTime?          @db.Timestamp()
-  todolist   Todolist[]
+  todolist   todolist[]
 }
 
-model Todolist {
+model todolist {
   postId        String    @id       @db.Char(13)
-  user          Userdata  @relation(fields: [postUsername], references: [username])
+  user          userdata  @relation(fields: [postUsername], references: [username])
   postUsername  String              @db.VarChar(30)
   status        Boolean             @db.Boolean
 }

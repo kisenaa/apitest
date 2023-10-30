@@ -1,5 +1,7 @@
+import { useUser } from '@clerk/clerk-react';
 import { FaAngleRight } from 'react-icons/fa';
 import { MdLogin } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 import express from '../assets/images/express.svg';
 import nodejslogo from '../assets/images/nodejs.svg';
@@ -9,6 +11,13 @@ import tailwind from '../assets/images/tailwind.svg';
 import tslogo from '../assets/images/tslogo.svg';
 
 const HomePage = () => {
+  const {isSignedIn} = useUser()
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+    isSignedIn ? navigate('/dashboard') : navigate('/sign-in')
+  }
+
   return (
     <div className="h-screen overflow-y-auto bg-[#161616]">
       <header className="fixed left-0 top-0 mt-1 flex w-screen items-center justify-between px-[7%] py-5">
@@ -41,7 +50,7 @@ const HomePage = () => {
         <div className="mt-[5%] flex w-full justify-between sm:px-[30%] xl:px-[40%]">
           <a
             className="blue-button gap-2 rounded-3xl bg-[--primary-8] text-white"
-            href="sign-in"
+            onClick={() => handleSignIn()}
           >
             <span className=" relative text-xl">
               <MdLogin />
