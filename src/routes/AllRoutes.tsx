@@ -18,8 +18,7 @@ const AllRoutes = () => {
   const navigate = useNavigate();
 
   return (
-    
-        <ClerkProvider publishableKey={clerkPubKey} navigate={(to) => navigate(to)}>
+  <ClerkProvider publishableKey={clerkPubKey} navigate={(to) => navigate(to)}>
     <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/sign-in/*" element={<SignIns />} />
