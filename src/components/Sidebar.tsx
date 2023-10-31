@@ -37,7 +37,7 @@ export const Sidebar = ({
                 showName={true}
                 appearance={{
                   elements: {
-                    userButtonBox: 'flex flex-col-reverse',
+                    userButtonBox: 'flex flex-row-reverse',
                   },
                 }}
               />

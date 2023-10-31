@@ -1,23 +1,14 @@
 /* eslint-disable no-console */
 /* eslint-disable unused-imports/no-unused-imports */
 import type { WebhookEvent } from '@clerk/clerk-sdk-node';
-import { neonConfig, Pool } from '@neondatabase/serverless';
 import type { Handler } from '@netlify/functions';
-import { PrismaNeon } from '@prisma/adapter-neon';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import { IncomingHttpHeaders } from "http";
 import { Webhook, WebhookRequiredHeaders  } from 'svix';
-import ws from 'ws';
-// Init database connection
 dotenv.config();
-neonConfig.fetchConnectionCache = true;
-neonConfig.webSocketConstructor = ws;
-const url = `${process.env.DATABASE_URL}`;
 
 // Init prisma client
-const pool = new Pool({ connectionString: url });
-const adapter = new PrismaNeon(pool);
 const prisma = new PrismaClient();
 
 const webhookSecret = `${process.env.WEBHOOK_SECRET}`;
