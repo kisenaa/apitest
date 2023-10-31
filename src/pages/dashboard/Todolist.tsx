@@ -24,8 +24,7 @@ const Todolist = () => {
     completed: false,
   });
 
-  const handleSubmit = useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = useCallback( (e: React.FormEvent<HTMLFormElement>) => {
       if (todo.title) {
         e.preventDefault();
         const hashing = prng();
@@ -50,8 +49,7 @@ const Todolist = () => {
     setTodo({ ...todo, [e.target.name]: e.target.value });
   };
 
-  const handleComplete = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
+  const handleComplete = useCallback( (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
       e.preventDefault();
       const updatedTask = [...task];
       updatedTask[index].completed = !updatedTask[index].completed;
@@ -61,8 +59,7 @@ const Todolist = () => {
     [task],
   );
 
-  const handleRemove = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
+  const handleRemove = useCallback( (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
       e.preventDefault();
       const updatedTask = [...task];
       updatedTask.splice(index, 1);
@@ -72,11 +69,7 @@ const Todolist = () => {
     [task],
   );
 
-  const handleEdit = useCallback(
-    async (
-      e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-      index: number,
-    ) => {
+  const handleEdit = useCallback( async () => {
       const { value: type } = await Swal.fire({
         title: 'Edit text',
         icon: 'info',
@@ -170,7 +163,7 @@ return (
             </button>
             <button
               className="mx-4 my-0 flex cursor-pointer rounded border-none bg-white p-2 align-middle text-blue-500 outline-none hover:bg-blue-500 hover:text-white"
-              onClick={(e) => handleEdit(e, i)} >
+              onClick={() => handleEdit()} >
               <BiSolidEditAlt size="18" />
             </button>
             <button

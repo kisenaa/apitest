@@ -19,11 +19,13 @@ const Weather = () => {
   const [temperatureText, setTemperatureText] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
+  
   useEffect(() => {
+    const abort = new AbortController()
     const getWeatherData = async () => {
       try {
         const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=-7.2492&lon=112.7508&units=metric&appid=1ddf5eb0a8599080434ff7da39c18fa4`
+          `https://api.openweathermap.org/data/2.5/weather?lat=-7.2492&lon=112.7508&units=metric&appid=1ddf5eb0a8599080434ff7da39c18fa4`, {signal: abort.signal}
           )
         const data = await response.json()
         if (response.ok) {
@@ -38,9 +40,11 @@ const Weather = () => {
         console.error('Failed to fetch weather data')
       }
     }
+    
     if (initial) {
       getWeatherData()
     }
+    return () => {abort.abort()}
   },[initial])
 
   useEffect(() => {
@@ -67,6 +71,8 @@ const Weather = () => {
       const temperature = Math.round(weatherData.main.temp)
       setTemperatureTextColor(temperature)
     }
+
+    return() => {}
   }, [weatherData])
 
   const iconHandler = (weather: string) => {

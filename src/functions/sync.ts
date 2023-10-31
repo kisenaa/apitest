@@ -39,23 +39,32 @@ export const handler: Handler = async (event) => {
     }
   }
 
-  if (evt.type === 'user.created' || evt.type === 'user.updated') {
+  if (evt.type === 'user.created') {
     const {username, email_addresses, first_name, last_name, created_at} = evt.data
     
     console.time('query')
-    await prisma.userdata.upsert({
-      where: {username: username as string},
-      create: {
+    await prisma.userdata.create({
+      data: {
         username: username as string,
         email: email_addresses[0].email_address,
-        firstname: first_name,
-        lastname: last_name,
+        firstname: first_name != null ? first_name : undefined,
+        lastname: last_name != null ? last_name : undefined,
         createdAt: new Date(created_at).toISOString()
-      },
-      update: {
+      }
+    })
+    console.timeEnd('query')
+  }
+
+  else if (evt.type === 'user.updated') {
+    const {username, email_addresses, first_name, last_name} = evt.data
+
+    console.time('query')
+    await prisma.userdata.update({
+      where: {username: username as string},
+      data : {
         email: email_addresses[0].email_address,
-        firstname: first_name,
-        lastname: last_name,
+        firstname: first_name != null ? first_name : undefined,
+        lastname: last_name != null ? last_name : undefined,
       }
     })
     console.timeEnd('query')

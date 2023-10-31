@@ -25,6 +25,7 @@ const SideBar = ({currentPage, setCurrentPage}: { currentPage:string ,setCurrent
       setDashboardOpen(false);
       setWeatherOpen(true);
     }
+    return () => {}
   }, [currentPage])
 
 
