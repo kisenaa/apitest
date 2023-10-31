@@ -18,9 +18,7 @@ const url = `${process.env.DATABASE_URL}`;
 // Init prisma client
 const pool = new Pool({ connectionString: url });
 const adapter = new PrismaNeon(pool);
-const prisma = new PrismaClient({
-  adapter,
-});
+const prisma = new PrismaClient();
 
 const webhookSecret = `${process.env.WEBHOOK_SECRET}`;
 
