@@ -1,1 +1,1 @@
-SELECT username FROM Userdata
+SELECT username FROM userdata
