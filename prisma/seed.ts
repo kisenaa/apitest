@@ -12,18 +12,18 @@ const connectionString = `${process.env.DATABASE_URL}`;
 // Init prisma client
 const pool = new Pool({ connectionString });
 const adapter = new PrismaNeon(pool);
-const prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient();
 
 const timestamp = 1698123482078;
 const createdAt = new Date(timestamp).toISOString()
 console.log(createdAt)
 
-const userData: Prisma.UserdataCreateInput[] = [
+const userData: Prisma.userdataCreateInput[] = [
   {
-    username: "defaultio",
-    email: "defau40@gmail.com",
-    firstname: "Polandadadad",
-    lastname: "Siudadas",
+    username: "defaultiodadsa",
+    email: "defaudads40@gmail.com",
+    firstname: "Polandadadadad",
+    lastname: "Siudadadads",
     createdAt: createdAt,
   },
 ];

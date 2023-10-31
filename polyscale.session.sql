@@ -1,2 +1,1 @@
-SELECT *
-FROM userdata
+SELECT * FROM userdata
