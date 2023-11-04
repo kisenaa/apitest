@@ -20,7 +20,7 @@ const Todolist = () => {
   const getTokens = async () => {
     const res = await getToken()
     setTokens(res)
-    return res || ''
+    return res || 'empty'
   }
 
   useEffect(() => {
