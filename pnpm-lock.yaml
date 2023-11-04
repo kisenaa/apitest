@@ -79,6 +79,9 @@ devDependencies:
   '@types/react-dom':
     specifier: 18.2.14
     version: 18.2.14
+  '@types/seedrandom':
+    specifier: ^3.0.7
+    version: 3.0.7
   '@types/ws':
     specifier: 8.5.8
     version: 8.5.8
@@ -1157,6 +1160,10 @@ packages:
 
   /@types/scheduler@0.16.5:
     resolution: {integrity: sha512-s/FPdYRmZR8SjLWGMCuax7r3qCWQw9QKHzXVukAuuIJkXkDRwp+Pu5LMIVFi0Fxbav35WURicYr8u1QsoybnQw==}
+    dev: true
+
+  /@types/seedrandom@3.0.7:
+    resolution: {integrity: sha512-2kwVU6ijXQblfsC8uqhBxslJC2wJfgTE1hINNkj29TL37fc8Uli5Ew43xTv2tShH3FeoKv8jkH2WgeVLd5QWzA==}
     dev: true
 
   /@types/semver@7.5.4:
