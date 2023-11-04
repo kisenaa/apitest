@@ -1,4 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+/* eslint-disable no-console */
+import { useAuth,useClerk } from '@clerk/clerk-react';
+import { useEffect, useState } from 'react';
 import { BiSolidEditAlt } from 'react-icons/bi';
 import { MdCancel, MdDoneAll } from 'react-icons/md';
 import Swal from 'sweetalert2';
@@ -6,70 +8,186 @@ import Swal from 'sweetalert2';
 import { prng } from '@/components/gen';
 
 import { taskProps } from '@/types/task';
+
 const Todolist = () => {
   // Multiple Tasks
   const [task, setTask] = useState<taskProps[]>([]);
 
+  const {user} = useClerk()
+  const { getToken } = useAuth();
+  const [tokens, setTokens] = useState<string|null>(null)
+
+  const getTokens = async () => {
+    const res = await getToken()
+    setTokens(res)
+    return res || ''
+  }
+
   useEffect(() => {
-    const taskList = localStorage.getItem('taskList');
-    if (taskList) {
-      setTask(JSON.parse(taskList));
+    const abort = new AbortController()
+    const fetchData = async () => {
+      try {
+        const token = tokens ? tokens : await getTokens();
+        const queryParams = new URLSearchParams({ userId: user ? user.id : '' })
+        const response = await fetch('https://johannes-midterm.netlify.app/api/getall?' + queryParams, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+            Mode: 'cors'
+          },
+          signal: abort.signal
+        })
+        const data = await response.json()
+        if (response.ok) {
+          setTask(data)
+        } else {
+          console.error("Error occured while fetching !")
+        }
+      } catch (error) {
+        if (!abort.signal.aborted)
+          console.error(error)
+      }
     }
-  }, []);
+
+    fetchData()
+    return (() => {abort.abort()})
+  },[])
+
+  const addRequest = async (task:taskProps) => {
+    const abort = new AbortController()
+    try {
+      const token = tokens ? tokens : await getTokens();
+      const response = await fetch('https://johannes-midterm.netlify.app/api/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          Mode: 'cors'
+        },
+        body: JSON.stringify({...task, userId: user?.id}),
+        signal: abort.signal
+      })
+
+      if (response.ok) {
+          console.log("success")
+      } else {
+        console.error("error posting todolist")
+      }
+    }
+    catch (error) {
+      if (!abort.signal.aborted)
+          console.error(error)
+    }
+
+    return (() => {abort.abort()})
+  }
+
+  const removeRequest = async (task:taskProps) => {
+    const abort = new AbortController()
+    try {
+      const token = tokens ? tokens : await getTokens();
+      const response = await fetch('https://johannes-midterm.netlify.app/api/remove', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          Mode: 'cors'
+        },
+        body: JSON.stringify({userId: user?.id, postId: task.postId}),
+        signal: abort.signal
+      })
+
+      if (response.ok) {
+          console.log("success")
+      } else {
+        console.error("error removing todolist")
+      }
+    }
+    catch (error) {
+      if (!abort.signal.aborted)
+          console.error(error)
+    }
+    return (() => {abort.abort()})
+
+  }
+
+  const modifyStatusRequest = async (task:taskProps) => {
+    const abort = new AbortController()
+    try {
+      const token = tokens ? tokens : await getTokens();
+      const response = await fetch('https://johannes-midterm.netlify.app/api/modify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          Mode: 'cors'
+        },
+        body: JSON.stringify({postId: task.postId, userId: user?.id, status: task.status}),
+        signal: abort.signal
+      })
+
+      if (response.ok) {
+          console.log("success")
+      } else {
+        console.error("error removing todolist")
+      }
+    }
+    catch (error) {
+      if (!abort.signal.aborted)
+          console.error(error)
+    }
+    return (() => {abort.abort()})
+  }
+
 
   // Input Form Task
-  const [todo, setTodo] = useState({
-    title: '',
-    description: '',
-    completed: false,
-  });
+  const [todo, setTodo] = useState({ title: '', description: '', status: false });
 
-  const handleSubmit = useCallback( (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       if (todo.title) {
         e.preventDefault();
         const hashing = prng();
+        const ids = hashing.toFixed(8)
         const newTask = [
           ...task,
           {
+            postId: `PO-${ids}`,
             title: todo.title,
             description: todo.description,
-            completed: todo.completed,
-            id: `PO-${hashing.toFixed(10)}`,
+            status: todo.status,
           },
         ];
         setTask(newTask);
-        setTodo({ title: '', description: '', completed: false });
-        localStorage.setItem('taskList', JSON.stringify(newTask));
+        setTodo({ title: '', description: '', status: false });
+        addRequest({postId: `PO-${ids}`,
+        title: todo.title,
+        description: todo.description,
+        status: todo.status,})
       }
-    },
-    [task, todo],
-  );
+    }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTodo({ ...todo, [e.target.name]: e.target.value });
   };
 
-  const handleComplete = useCallback( (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
+  const handleComplete = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
       e.preventDefault();
       const updatedTask = [...task];
-      updatedTask[index].completed = !updatedTask[index].completed;
+      updatedTask[index].status = !updatedTask[index].status;
       setTask(updatedTask);
-      localStorage.setItem('taskList', JSON.stringify(updatedTask));
-    },
-    [task],
-  );
+      modifyStatusRequest(updatedTask[index])
+    }
 
-  const handleRemove = useCallback( (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
+  const handleRemove = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, index: number) => {
       e.preventDefault();
       const updatedTask = [...task];
+      removeRequest(updatedTask[index])
       updatedTask.splice(index, 1);
       setTask(updatedTask);
-      localStorage.setItem('taskList', JSON.stringify(updatedTask));
-    },
-    [task],
-  );
-
-  const handleEdit = useCallback( async () => {
+    }
+  
+  const handleEdit = async () => {
       const { value: type } = await Swal.fire({
         title: 'Edit text',
         icon: 'info',
@@ -94,9 +212,7 @@ const Todolist = () => {
           text: 'The feature is on progress !',
         });
       }
-    },
-    [],
-  );
+    }
 
 return (
   <div className="h-screen w-screen bg-[#faebd7] text-center">
@@ -138,14 +254,14 @@ return (
             <div
               className=" mb-2 text-lg font-bold capitalize text-black"
               style={{
-                textDecoration: tasks.completed ? 'line-through' : '',
+                textDecoration: tasks.status ? 'line-through' : '',
               }} >
               {tasks.title}
             </div>
             <div
               className="text-black"
               style={{
-                textDecoration: tasks.completed ? 'line-through' : '',
+                textDecoration: tasks.status ? 'line-through' : '',
               }} >
               {tasks.description}
             </div>

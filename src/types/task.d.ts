@@ -1,6 +1,6 @@
 export interface taskProps {
-  id: string;
+  postId: string;
   title: string;
   description: string;
-  completed: boolean;
+  status: boolean;
 }

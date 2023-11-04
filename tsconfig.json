@@ -4,7 +4,6 @@
   },
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "skipLibCheck": true,
 

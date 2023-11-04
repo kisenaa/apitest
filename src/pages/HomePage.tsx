@@ -11,12 +11,12 @@ import tailwind from '../assets/images/tailwind.svg';
 import tslogo from '../assets/images/tslogo.svg';
 
 const HomePage = () => {
-  const {isSignedIn} = useUser()
+  const { isSignedIn } = useUser();
   const navigate = useNavigate();
 
   const handleSignIn = () => {
-    isSignedIn ? navigate('/dashboard') : navigate('/sign-in')
-  }
+    isSignedIn ? navigate('/dashboard') : navigate('/sign-in');
+  };
 
   return (
     <div className="h-screen overflow-y-auto bg-[#161616]">

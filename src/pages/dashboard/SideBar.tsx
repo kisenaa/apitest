@@ -7,7 +7,13 @@ import { useNavigate } from 'react-router-dom';
 
 import Sidebar, { SidebarItem } from '@/components/Sidebar';
 
-const SideBar = ({currentPage, setCurrentPage}: { currentPage:string ,setCurrentPage: React.Dispatch<React.SetStateAction<string>> }) => {
+const SideBar = ({
+  currentPage,
+  setCurrentPage,
+}: {
+  currentPage: string;
+  setCurrentPage: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const navigate = useNavigate();
 
   const { user } = useUser();
@@ -25,9 +31,10 @@ const SideBar = ({currentPage, setCurrentPage}: { currentPage:string ,setCurrent
       setDashboardOpen(false);
       setWeatherOpen(true);
     }
-    return () => {}
-  }, [currentPage])
-
+    return () => {
+      undefined;
+    };
+  }, [currentPage]);
 
   return (
     <>

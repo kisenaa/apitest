@@ -4,8 +4,7 @@ import { ReactNode } from 'react';
 import bg from '../assets/images/bg.jpg';
 
 const SignIns = ({ children }: { children?: ReactNode }) => {
-
-  return ( 
+  return (
     <div>
       <div
         className="flex h-screen bg-cover bg-center bg-no-repeat"

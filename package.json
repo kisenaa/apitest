@@ -1,52 +1,48 @@
 {
-  "name": "fullstack",
+  "name": "apitest",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.0",
   "scripts": {
     "start": "vite",
     "build": "npx prisma generate && tsc && vite build",
-    "format": "prettier -w .",
     "preview": "vite preview",
     "dev": "netlify dev",
+    "format": "prettier -w .",
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
-    "@clerk/clerk-sdk-node": "^4.12.18",
     "@netlify/functions": "^2.3.0",
-    "@prisma/client": "5.4.2",
-    "@types/react-router-dom": "^5.3.3",
-    "@types/seedrandom": "^3.0.7",
+    "@prisma/client": "5.5.2",
     "esbuild": "^0.19.5",
     "express": "4.18.2",
-    "lucide-react": "^0.288.0",
+    "lucide-react": "^0.291.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
-    "react-router-dom": "^6.17.0",
+    "react-router-dom": "^6.18.0",
     "seedrandom": "^3.0.5",
     "serverless-http": "^3.2.0",
     "svix": "^1.13.0",
-    "sweetalert2": "^11.7.32",
+    "sweetalert2": "^11.9.0",
     "ws": "8.14.2"
   },
   "devDependencies": {
-    "@clerk/clerk-react": "^4.26.6",
+    "@clerk/clerk-react": "^4.27.2",
+    "@clerk/clerk-sdk-node": "^4.12.19",
     "@nabla/vite-plugin-eslint": "1.5.0",
     "@neondatabase/serverless": "0.6.0",
-    "@prisma/adapter-neon": "5.4.3",
+    "@prisma/adapter-neon": "5.5.2",
     "@types/cors": "2.8.15",
     "@types/express": "^4.17.20",
-    "@types/node": "20.8.8",
-    "@types/react": "18.2.31",
+    "@types/node": "20.8.10",
+    "@types/react": "18.2.34",
     "@types/react-dom": "18.2.14",
     "@types/ws": "8.5.8",
-    "@typescript-eslint/eslint-plugin": "6.9.0",
-    "@typescript-eslint/parser": "6.9.0",
-    "@vitejs/plugin-react-swc": "3.4.0",
+    "@typescript-eslint/eslint-plugin": "6.9.1",
+    "@typescript-eslint/parser": "6.9.1",
+    "@vitejs/plugin-react-swc": "3.4.1",
     "autoprefixer": "10.4.16",
-    "buffer": "^6.0.3",
     "cors": "2.8.5",
-    "crypto-browserify": "^3.12.0",
     "dotenv": "16.3.1",
     "eslint": "8.52.0",
     "eslint-config-prettier": "9.0.0",
@@ -56,13 +52,12 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-tailwindcss": "^3.13.0",
     "eslint-plugin-unused-imports": "^3.0.0",
-    "install": "^0.13.0",
     "postcss": "8.4.31",
     "postcss-normalize": "^10.0.1",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.6",
-    "prisma": "5.4.2",
-    "tailwindcss": "3.3.3",
+    "prisma": "5.5.2",
+    "tailwindcss": "3.3.5",
     "typescript": "5.2.2",
     "vite": "4.5.0",
     "vite-plugin-node-polyfills": "^0.15.0"
@@ -70,18 +65,5 @@
   "prisma": {
     "seed": "ts-node prisma/seed.ts",
     "schema": "prisma/schema.prisma"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version",
-      "last 1 edge version"
-    ]
   }
 }

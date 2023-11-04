@@ -16,18 +16,20 @@ datasource db {
 }
 
 model userdata {
-  username   String   @id       @db.VarChar(30)
-  email      String   @unique   @db.VarChar(30)
-  firstname  String?            @db.VarChar(30)
-  lastname   String?            @db.VarChar(30)
-  telephone  String?            @db.VarChar(20)
-  createdAt  DateTime?          @db.Timestamp()
+  userId     String    @id       @db.Char(32)
+  username   String?   @unique   @db.VarChar(32)
+  email      String?   @unique   @db.VarChar(32)
+  firstname  String?             @db.VarChar(32)
+  lastname   String?             @db.VarChar(32)
+  createdAt  DateTime?           @db.Timestamp()
   todolist   todolist[]
 }
 
 model todolist {
   postId        String    @id       @db.Char(13)
-  user          userdata  @relation(fields: [postUsername], references: [username])
-  postUsername  String              @db.VarChar(30)
+  user          userdata  @relation(fields: [userId], references: [userId])
+  userId        String              @db.Char(32)
+  title         String              @db.Text
+  description   String              @db.Text
   status        Boolean             @db.Boolean
 }

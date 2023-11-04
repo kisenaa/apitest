@@ -5,7 +5,7 @@ import Todolist from './Todolist';
 import Weather from './Weather';
 
 const Dashboard = () => {
-  const [currentPage, setCurrent ] = useState('Dashboard')
+  const [currentPage, setCurrent] = useState('Dashboard');
 
   return (
     <div className="h-screen overflow-auto">
@@ -15,7 +15,7 @@ const Dashboard = () => {
         </div>
 
         {currentPage === 'Dashboard' ? <Todolist /> : null}
-        {currentPage === 'Weather' ? <Weather/> : null}
+        {currentPage === 'Weather' ? <Weather /> : null}
       </div>
     </div>
   );
