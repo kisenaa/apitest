@@ -9,6 +9,8 @@ Name: Johannes Daniswara Pratama
 
 NRP : 5025221276
 
+[Click Here to site link](https://johannes-midterm.netlify.app/) 
+
 ## Tech Stack
 Frontend : React, Vite, Typescript and Tailwind CSS
 
@@ -16,7 +18,7 @@ Backend : Express , Prisma , and Postqres SQL
 
 ## Install
 
-> This project uses [node JS](http://nodejs.org) and a package manager ([npm](https://npmjs.com), [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.io/)).
+> This project  uses[node JS](http://nodejs.org) and a package manager ([npm](https://npmjs.com), [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.io/)).
 
 After getting a copy of this repository, you can use your package manager to install dependecies:
 
